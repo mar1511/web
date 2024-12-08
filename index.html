@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a MindCare</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3097c9;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #f7d49a;
+        }
+
+        /* Banner */
+        .banner {
+            background-image: url('https://www.unicef.org/mexico/sites/unicef.org.mexico/files/styles/hero_extended/public/Mental%20Health%20%28Facebook%20ad%29%20%281%29.jpg.webp?itok=OcqNwg_6');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .banner h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        /* Sección de música */
+        .music-section {
+            text-align: center;
+            margin: 30px 20px;
+        }
+
+        .music-section h3 {
+            font-size: 1.8em;
+            color: #3097c9;
+            margin-bottom: 20px;
+        }
+
+        .music-thumbnail {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        /* Sección de información */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .info-card {
+            flex: 1 1 300px;
+            max-width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .info-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .info-card h4 {
+            font-size: 1.5em;
+            margin: 15px 0;
+            color: #3097c9;
+        }
+
+        .info-card p {
+            font-size: 1em;
+            padding: 0 10px 20px 10px;
+            color: #555;
+        }
+
+        /* WhatsApp Icon */
+        .whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-icon img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* Pop-up */
+        .popup {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .popup-header {
+            background-color: #25d366;
+            color: white;
+            padding: 10px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .popup-body {
+            padding: 10px;
+            font-size: 0.9em;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .popup-footer {
+            padding: 10px;
+            text-align: right;
+            background-color: #f7f7f7;
+        }
+
+        .popup-footer textarea {
+            width: 100%;
+            height: 50px;
+            resize: none;
+            padding: 5px;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .popup-footer button {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .popup-footer button:hover {
+            background-color: #1c9e52;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            background-color: #4c84a4;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">MindCare</a>
+            <ul>
+                <li><a href="Registro.html">Registro</a></li>
+                <li><a href="Asesoramiento.html">Asesoramiento</a></li>
+                <li><a href="Autoayuda.html">Autoayuda</a></li>
+                <li><a href="Comunidad.html">Comunidad de Apoyo</a></li>
+                <li><a href="Cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner original -->
+    <div class="banner">
+        <div>
+            <h2>¡Descubre el camino hacia el bienestar mental!</h2>
+        </div>
+    </div>
+
+    <!-- Sección de música relajante -->
+    <div class="music-section">
+        <h3>Escucha música relajante para tu bienestar</h3>
+        <div id="musicContainer">
+            <img 
+                src="https://img.youtube.com/vi/BCQddiLmyRc/maxresdefault.jpg" 
+                alt="Miniatura de YouTube" 
+                class="music-thumbnail" 
+                onclick="playMusic()"
+            />
+        </div>
+    </div>
+
+    <!-- Sección de información sobre salud mental -->
+    <div class="info-section">
+        <div class="info-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5W5d5wJfrLLs-09y2pJb-fXv2eHXePLDcPw&s" alt="Salud mental">
+            <h4>¿Por qué es importante?</h4>
+            <p>Cuidar tu salud mental es esencial para llevar una vida equilibrada y feliz. Aquí encontrarás recursos para lograrlo.</p>
+        </div>
+        <div class="info-card">
+            <img src="https://media.licdn.com/dms/image/D4E12AQEdERah1XmJqQ/article-cover_image-shrink_720_1280/0/1691692216752?e=2147483647&v=beta&t=1rJACbwzSIiBs2WIpoO8F-aj38gZJuzJk6_r2FSgDGA" alt="Bienestar emocional">
+            <h4>Técnicas de relajación</h4>
+            <p>Aprende técnicas de respiración, meditación y mindfulness para reducir el estrés y mejorar tu bienestar.</p>
+        </div>
+        <div class="info-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg6Se3vSNtkThiRzRlgTIcXqq0BBneJYWa3g&s" alt="Apoyo comunitario">
+            <h4>Comunidad de apoyo</h4>
+            <p>Únete a nuestra comunidad para compartir experiencias y encontrar apoyo en momentos difíciles.</p>
+        </div>
+    </div>
+
+    <!-- Icono de WhatsApp -->
+    <div class="whatsapp-icon" onclick="togglePopup()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+    </div>
+
+    <!-- Pop-up -->
+    <div id="popup" class="popup">
+        <div class="popup-header">Chat con MindCare</div>
+        <div class="popup-body" id="chatBody">
+            <p><strong>Bot:</strong> ¡Hola! ¿En qué puedo ayudarte? Escribe "registro", "asesoramiento", "autoayuda", "comunidad" o "cursos" para más información.</p>
+        </div>
+        <div class="popup-footer">
+            <textarea id="userMessage" placeholder="Escribe tu mensaje..."></textarea>
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2024 MindCare - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        function togglePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const userMessage = document.getElementById('userMessage').value.trim();
+            const chatBody = document.getElementById('chatBody');
+
+            if (userMessage) {
+                chatBody.innerHTML += `<p><strong>Tú:</strong> ${userMessage}</p>`;
+
+                let botResponse = "Lo siento, no entiendo tu mensaje.";
+                if (userMessage.toLowerCase().includes("registro")) {
+                    botResponse = 'Visita el apartado de <a href="Registro.html">Registro</a> para más detalles.';
+                } else if (userMessage.toLowerCase().includes("asesoramiento")) {
+                    botResponse = 'Consulta nuestra página de <a href="Asesoramiento.html">Asesoramiento</a>.';
+                } else if (userMessage.toLowerCase().includes("autoayuda")) {
+                    botResponse = 'Descubre más en la sección de <a href="Autoayuda.html">Autoayuda</a>.';
+                } else if (userMessage.toLowerCase().includes("comunidad")) {
+                    botResponse = 'Únete a nuestra <a href="Comunidad.html">Comunidad de Apoyo</a>.';
+                } else if (userMessage.toLowerCase().includes("cursos")) {
+                    botResponse = 'Explora los <a href="Cursos.html">Cursos</a> disponibles.';
+                }
+
+                chatBody.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+                chatBody.scrollTop = chatBody.scrollHeight;
+                document.getElementById('userMessage').value = '';
+            }
+        }
+
+        function playMusic() {
+            const musicContainer = document.getElementById('musicContainer');
+            musicContainer.innerHTML = `
+                <iframe 
+                    width="80%" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/BCQddiLmyRc?autoplay=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+                </iframe>`;
+        }
+    </script>
+</body>
+</html>

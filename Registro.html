@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - MindCare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ85nPNKxt9DwV0OQ5_nNtk4rvlvhHQ0vIFJA&s');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3097c9;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #f7d49a;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #3097c9;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select, textarea, button {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #3097c9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2678a1;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+        }
+
+        .popup h2 {
+            margin-bottom: 15px;
+            color: #3097c9;
+        }
+
+        .popup button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">MindCare</a>
+            <ul>
+                <li><a href="Registro.html">Registro</a></li>
+                <li><a href="Asesoramiento.html">Asesoramiento</a></li>
+                <li><a href="Autoayuda.html">Autoayuda</a></li>
+                <li><a href="Comunidad.html">Comunidad de Apoyo</a></li>
+                <li><a href="Cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Registro</h1>
+        <form id="registrationForm">
+            <label for="name">Nombre completo:</label>
+            <input type="text" id="name" name="name" placeholder="Escribe tu nombre completo" required>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required>
+
+            <label for="phone">Número de teléfono:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Escribe tu número de teléfono" required>
+
+            <label for="birthdate">Fecha de nacimiento:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" name="address" placeholder="Escribe tu dirección" required>
+
+            <label for="subscription">Tipo de suscripción:</label>
+            <select id="subscription" name="subscription" onchange="togglePaymentOptions()" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="free">Gratuita</option>
+                <option value="paid">De paga</option>
+            </select>
+
+            <div id="paymentOptions" style="display: none;">
+                <label for="paymentMethod">Método de pago:</label>
+                <select id="paymentMethod" name="paymentMethod">
+                    <option value="creditCard">Tarjeta de crédito</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bankTransfer">Transferencia bancaria</option>
+                </select>
+            </div>
+
+            <label for="notes">Comentarios adicionales:</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="¿Algo más que debamos saber?"></textarea>
+
+            <button type="button" onclick="submitForm()">Registrar</button>
+        </form>
+    </div>
+
+    <!-- Pop-up de confirmación -->
+    <div id="popup" class="popup">
+        <h2 id="popupMessage">¡Registro exitoso!</h2>
+        <button onclick="redirectToIndex()">Ir a inicio</button>
+    </div>
+
+    <script>
+        // Mostrar opciones de pago si selecciona "De paga"
+        function togglePaymentOptions() {
+            const subscription = document.getElementById("subscription").value;
+            const paymentOptions = document.getElementById("paymentOptions");
+            paymentOptions.style.display = subscription === "paid" ? "block" : "none";
+        }
+
+        // Simular envío del formulario
+        function submitForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const subscription = document.getElementById("subscription").value;
+            const popup = document.getElementById("popup");
+            const popupMessage = document.getElementById("popupMessage");
+
+            if (name && email && subscription) {
+                if (subscription === "paid") {
+                    popupMessage.textContent = "¡Registro exitoso! Por favor, complete el pago.";
+                } else {
+                    popupMessage.textContent = "¡Registro exitoso! Gracias por registrarte.";
+                }
+
+                popup.style.display = "block";
+            } else {
+                alert("Por favor, completa todos los campos obligatorios.");
+            }
+        }
+
+        // Redirigir al index.html
+        function redirectToIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

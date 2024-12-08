@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesoramiento - MindCare</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3097c9;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #f7d49a;
+        }
+
+        /* Banner */
+        .banner {
+            background-image: url('https://mejorconsalud.as.com/wp-content/uploads/2022/10/cerebro-meditacion-768x499.jpg?auto=webp&quality=60&width=1920&crop=16:9,smart,safe');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .banner h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h3 {
+            font-size: 2em;
+            color: #3097c9;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .description {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Tarjetas */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            max-width: 300px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card h4 {
+            font-size: 1.5em;
+            margin: 15px;
+            color: #3097c9;
+        }
+
+        .card p {
+            font-size: 1em;
+            padding: 0 15px 15px 15px;
+            color: #555;
+        }
+
+        /* Botón */
+        .button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #3097c9;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            border-top: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2678a1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .modal h4 {
+            margin: 0;
+            color: #3097c9;
+        }
+
+        .modal form {
+            margin-top: 10px;
+        }
+
+        .modal form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .modal form input, 
+        .modal form select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal form button {
+            margin-top: 15px;
+            background-color: #3097c9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .modal form button:hover {
+            background-color: #2678a1;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">MindCare</a>
+            <ul>
+                <li><a href="Registro.html">Registro</a></li>
+                <li><a href="Asesoramiento.html">Asesoramiento</a></li>
+                <li><a href="Autoayuda.html">Autoayuda</a></li>
+                <li><a href="Comunidad.html">Comunidad de Apoyo</a></li>
+                <li><a href="Cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <div class="banner">
+        <h2>Sesiones de Asesoramiento Virtual</h2>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h3>Asesoramiento con Psicólogos Certificados</h3>
+        <p class="description">
+            Accede a sesiones en línea con especialistas a precios accesibles y recibe el apoyo que necesitas para tu bienestar emocional.
+        </p>
+
+        <!-- Tarjetas -->
+        <div class="cards">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5W5d5wJfrLLs-09y2pJb-fXv2eHXePLDcPw&s" alt="Psicólogo certificado">
+                <h4>Explorar Opciones</h4>
+                <p>Elige entre diversas modalidades y horarios para tu asesoramiento.</p>
+                <a href="#" class="button" onclick="openModal('modalOptions')">Explorar</a>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg6Se3vSNtkThiRzRlgTIcXqq0BBneJYWa3g&s" alt="Sesión en línea">
+                <h4>Programar Sesión</h4>
+                <p>Completa tus datos y programa una sesión de inmediato.</p>
+                <a href="#" class="button" onclick="openModal('modalSession')">Programar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modalOptions" class="modal">
+        <h4>Opciones Disponibles</h4>
+        <form>
+            <label for="type">Tipo de Asesoramiento:</label>
+            <select id="type">
+                <option>Individual</option>
+                <option>Familiar</option>
+                <option>Grupal</option>
+            </select>
+            <button type="button" onclick="submitForm('modalOptions')">Confirmar</button>
+        </form>
+    </div>
+
+    <div id="modalSession" class="modal">
+        <h4>Programar Sesión</h4>
+        <form>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" required>
+            <button type="button" onclick="submitForm('modalSession')">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Overlay -->
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function submitForm(modalId) {
+            alert('Formulario enviado con éxito');
+            closeModal(modalId);
+        }
+    </script>
+</body>
+</html>
